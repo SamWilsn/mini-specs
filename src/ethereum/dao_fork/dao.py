@@ -1,14 +1,4 @@
 """
-Dao Fork
-^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 The Dao Fork was an irregular state change that moved all Ether from a large
 collection of accounts (The Dao and all its children) to a recovery contract.
 

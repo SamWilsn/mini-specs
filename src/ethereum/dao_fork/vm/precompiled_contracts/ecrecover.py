@@ -1,14 +1,4 @@
 """
-Ethereum Virtual Machine (EVM) ECRECOVER PRECOMPILED CONTRACT
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Implementation of the ECRECOVER precompiled contract.
 """
 from ethereum.base_types import U256

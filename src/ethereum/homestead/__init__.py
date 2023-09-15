@@ -1,7 +1,4 @@
 """
-Ethereum Homestead Hardfork
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 The second Ethereum hardfork.
 """
 

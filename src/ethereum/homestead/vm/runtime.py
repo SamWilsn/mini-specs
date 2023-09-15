@@ -1,14 +1,4 @@
 """
-Ethereum Virtual Machine (EVM) Runtime Operations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Runtime related operations used while executing EVM code.
 """
 from typing import Set

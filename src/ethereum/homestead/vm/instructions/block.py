@@ -1,14 +1,4 @@
 """
-Ethereum Virtual Machine (EVM) Block Instructions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Implementations of the EVM block instructions.
 """
 

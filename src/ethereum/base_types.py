@@ -1,14 +1,4 @@
 """
-Numeric & Array Types
-^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Integer and array types which are used by—but not unique to—Ethereum.
 """
 
@@ -373,9 +363,7 @@ class FixedUInt(int):
             raise ValueError()
 
         # This is a fast way of ensuring that the result is < (2 ** 256)
-        return int.__new__(
-            self.__class__, int.__add__(self, right) & self.MAX_VALUE
-        )
+        return int.__new__(self.__class__, int.__add__(self, right) & self.MAX_VALUE)
 
     def __iadd__(self: T, right: int) -> T:
         return self.__add__(right)
@@ -412,9 +400,7 @@ class FixedUInt(int):
             raise ValueError()
 
         # This is a fast way of ensuring that the result is < (2 ** 256)
-        return int.__new__(
-            self.__class__, int.__sub__(self, right) & self.MAX_VALUE
-        )
+        return int.__new__(self.__class__, int.__sub__(self, right) & self.MAX_VALUE)
 
     def __rsub__(self: T, left: int) -> T:
         if not isinstance(left, int):
@@ -462,9 +448,7 @@ class FixedUInt(int):
             raise ValueError()
 
         # This is a fast way of ensuring that the result is < (2 ** 256)
-        return int.__new__(
-            self.__class__, int.__mul__(self, right) & self.MAX_VALUE
-        )
+        return int.__new__(self.__class__, int.__mul__(self, right) & self.MAX_VALUE)
 
     def __rmul__(self: T, left: int) -> T:
         return self.__mul__(left)
@@ -663,9 +647,7 @@ class FixedUInt(int):
         return self.__xor__(right)
 
     def __invert__(self: T) -> T:
-        return int.__new__(
-            self.__class__, int.__invert__(self) & self.MAX_VALUE
-        )
+        return int.__new__(self.__class__, int.__invert__(self) & self.MAX_VALUE)
 
     def __rshift__(self: T, shift_by: int) -> T:
         if not isinstance(shift_by, int):
@@ -910,9 +892,7 @@ class FixedBytes(bytes):
         """
         result = super(FixedBytes, cls).__new__(cls, *args, **kwargs)
         if len(result) != cls.LENGTH:
-            raise ValueError(
-                f"expected {cls.LENGTH} bytes but got {len(result)}"
-            )
+            raise ValueError(f"expected {cls.LENGTH} bytes but got {len(result)}")
         return result
 
 

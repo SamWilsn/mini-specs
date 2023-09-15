@@ -1,14 +1,4 @@
 """
-Utility Functions For Hexadecimal Strings
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Hexadecimal strings specific utility functions used in this specification.
 """
 from ethereum.base_types import (
@@ -144,9 +134,7 @@ def hex_to_bytes256(hex_string: str) -> Bytes256:
     256_byte_stream : `Bytes256`
         256-byte stream corresponding to the given hexadecimal string.
     """
-    return Bytes256(
-        bytes.fromhex(remove_hex_prefix(hex_string).rjust(512, "0"))
-    )
+    return Bytes256(bytes.fromhex(remove_hex_prefix(hex_string).rjust(512, "0")))
 
 
 def hex_to_hash(hex_string: str) -> Hash32:

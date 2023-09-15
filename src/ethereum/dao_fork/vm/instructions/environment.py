@@ -1,14 +1,4 @@
 """
-Ethereum Virtual Machine (EVM) Environmental Instructions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Implementations of the EVM environment related instructions.
 """
 

@@ -1,14 +1,4 @@
 """
-Ethereum Types
-^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Types re-used throughout the specification, which are specific to Ethereum.
 """
 

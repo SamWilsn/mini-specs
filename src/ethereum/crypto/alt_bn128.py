@@ -1,6 +1,5 @@
 """
 The alt_bn128 curve
-^^^^^^^^^^^^^^^^^^^
 """
 
 from . import elliptic_curve, finite_field

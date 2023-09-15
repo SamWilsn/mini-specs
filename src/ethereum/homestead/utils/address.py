@@ -1,14 +1,4 @@
 """
-Hardfork Utility Functions For Addresses
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Address specific functions used in this homestead version of specification.
 """
 from typing import Union

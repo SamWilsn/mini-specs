@@ -1,14 +1,4 @@
 """
-Utility Functions For Numeric Operations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Numeric operations specific utility functions used in this specification.
 """
 from typing import Sequence, Tuple

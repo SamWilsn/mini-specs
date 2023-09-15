@@ -1,6 +1,4 @@
 """
-Ethereum Specification
-^^^^^^^^^^^^^^^^^^^^^^
 Seeing as internet connections have been vastly expanding across the
 world, spreading information has become as cheap as ever. Bitcoin, for
 example, has demonstrated the possibility of creating a decentralized,

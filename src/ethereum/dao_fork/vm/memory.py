@@ -1,14 +1,4 @@
 """
-Ethereum Virtual Machine (EVM) Memory
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 EVM memory operations.
 """
 from ethereum.utils.byte import right_pad_zero_bytes
@@ -16,9 +6,7 @@ from ethereum.utils.byte import right_pad_zero_bytes
 from ...base_types import U256, Bytes, Uint
 
 
-def memory_write(
-    memory: bytearray, start_position: U256, value: Bytes
-) -> None:
+def memory_write(memory: bytearray, start_position: U256, value: Bytes) -> None:
     """
     Writes to memory.
 
@@ -34,9 +22,7 @@ def memory_write(
     memory[start_position : Uint(start_position) + len(value)] = value
 
 
-def memory_read_bytes(
-    memory: bytearray, start_position: U256, size: U256
-) -> bytearray:
+def memory_read_bytes(memory: bytearray, start_position: U256, size: U256) -> bytearray:
     """
     Read bytes from memory.
 

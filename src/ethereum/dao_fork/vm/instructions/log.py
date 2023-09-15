@@ -1,14 +1,4 @@
 """
-Ethereum Virtual Machine (EVM) Logging Instructions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Implementations of the EVM logging instructions.
 """
 from functools import partial
@@ -58,10 +48,7 @@ def log_n(evm: Evm, num_topics: U256) -> None:
     )
     charge_gas(
         evm,
-        GAS_LOG
-        + GAS_LOG_DATA * size
-        + GAS_LOG_TOPIC * num_topics
-        + extend_memory.cost,
+        GAS_LOG + GAS_LOG_DATA * size + GAS_LOG_TOPIC * num_topics + extend_memory.cost,
     )
 
     # OPERATION

@@ -1,6 +1,5 @@
 """
 The Blake2 Implementation
-^^^^^^^^^^^^^^^^^^^^^^^^^^
 """
 import struct
 from dataclasses import dataclass
@@ -25,9 +24,7 @@ def spit_le_to_uint(data: bytes, start: int, num_words: int) -> List[Uint]:
     words = []
     for i in range(num_words):
         start_position = start + (i * 8)
-        words.append(
-            Uint.from_le_bytes(data[start_position : start_position + 8])
-        )
+        words.append(Uint.from_le_bytes(data[start_position : start_position + 8]))
 
     return words
 
@@ -138,9 +135,7 @@ class Blake2:
 
         return (rounds, h, m, t_0, t_1, f)
 
-    def G(
-        self, v: List, a: int, b: int, c: int, d: int, x: int, y: int
-    ) -> List:
+    def G(self, v: List, a: int, b: int, c: int, d: int, x: int, y: int) -> List:
         """
         The mixing function used in Blake2
         https://datatracker.ietf.org/doc/html/rfc7693#section-3.1
@@ -155,24 +150,16 @@ class Blake2:
             The two input words for the mixing.
         """
         v[a] = (v[a] + v[b] + x) % self.max_word
-        v[d] = ((v[d] ^ v[a]) >> self.R1) ^ (
-            (v[d] ^ v[a]) << self.w_R1
-        ) % self.max_word
+        v[d] = ((v[d] ^ v[a]) >> self.R1) ^ ((v[d] ^ v[a]) << self.w_R1) % self.max_word
 
         v[c] = (v[c] + v[d]) % self.max_word
-        v[b] = ((v[b] ^ v[c]) >> self.R2) ^ (
-            (v[b] ^ v[c]) << self.w_R2
-        ) % self.max_word
+        v[b] = ((v[b] ^ v[c]) >> self.R2) ^ ((v[b] ^ v[c]) << self.w_R2) % self.max_word
 
         v[a] = (v[a] + v[b] + y) % self.max_word
-        v[d] = ((v[d] ^ v[a]) >> self.R3) ^ (
-            (v[d] ^ v[a]) << self.w_R3
-        ) % self.max_word
+        v[d] = ((v[d] ^ v[a]) >> self.R3) ^ ((v[d] ^ v[a]) << self.w_R3) % self.max_word
 
         v[c] = (v[c] + v[d]) % self.max_word
-        v[b] = ((v[b] ^ v[c]) >> self.R4) ^ (
-            (v[b] ^ v[c]) << self.w_R4
-        ) % self.max_word
+        v[b] = ((v[b] ^ v[c]) >> self.R4) ^ ((v[b] ^ v[c]) << self.w_R4) % self.max_word
 
         return v
 

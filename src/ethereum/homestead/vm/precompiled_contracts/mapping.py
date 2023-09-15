@@ -1,14 +1,4 @@
 """
-Precompiled Contract Addresses
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Mapping of precompiled contracts their implementations.
 """
 from typing import Callable, Dict

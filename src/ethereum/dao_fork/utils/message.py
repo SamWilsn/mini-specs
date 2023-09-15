@@ -1,14 +1,4 @@
 """
-Hardfork Utility Functions For The Message Data-structure
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Message specific functions used in this Dao Fork version of specification.
 """
 from typing import Optional, Union

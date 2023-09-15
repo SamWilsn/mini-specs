@@ -1,6 +1,5 @@
 """
 Finite Fields
-^^^^^^^^^^^^^
 """
 
 # flake8: noqa: D102, D105
@@ -149,9 +148,7 @@ class PrimeField(int, Field):
     def __pow__(self: T, exponent: int) -> T:  # type: ignore[override]
         # For reasons that are unclear, self must be cast to int here under
         # PyPy.
-        return self.__new__(
-            type(self), int.__pow__(int(self), exponent, self.PRIME)
-        )
+        return self.__new__(type(self), int.__pow__(int(self), exponent, self.PRIME))
 
     __rpow__ = None  # type: ignore
 
@@ -230,10 +227,7 @@ class GaloisField(tuple, Field):
 
         return self.__new__(
             type(self),
-            (
-                x + y
-                for (x, y) in cast(Iterable[Tuple[int, int]], zip(self, right))
-            ),
+            (x + y for (x, y) in cast(Iterable[Tuple[int, int]], zip(self, right))),
         )
 
     def __radd__(self: U, left: U) -> U:
@@ -250,10 +244,7 @@ class GaloisField(tuple, Field):
         y: int
         return self.__new__(
             type(self),
-            (
-                x - y
-                for (x, y) in cast(Iterable[Tuple[int, int]], zip(self, right))
-            ),
+            (x - y for (x, y) in cast(Iterable[Tuple[int, int]], zip(self, right))),
         )
 
     def __rsub__(self: U, left: U) -> U:
@@ -262,10 +253,7 @@ class GaloisField(tuple, Field):
 
         return self.__new__(
             type(self),
-            (
-                x - y
-                for (x, y) in cast(Iterable[Tuple[int, int]], zip(left, self))
-            ),
+            (x - y for (x, y) in cast(Iterable[Tuple[int, int]], zip(left, self))),
         )
 
     def __mul__(self: U, right: U) -> U:  # type: ignore[override]

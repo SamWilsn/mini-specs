@@ -1,6 +1,5 @@
 """
 Elliptic Curves
-^^^^^^^^^^^^^^^
 """
 
 from typing import Generic, Type, TypeVar

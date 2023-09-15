@@ -1,14 +1,4 @@
 """
-Ethereum Virtual Machine (EVM) System Instructions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Implementations of the EVM system related instructions.
 """
 from ethereum.base_types import U256, Bytes0, Uint
@@ -88,9 +78,7 @@ def create(evm: Evm) -> None:
         increment_nonce(evm.env.state, evm.message.current_target)
         push(evm.stack, U256(0))
     else:
-        call_data = memory_read_bytes(
-            evm.memory, memory_start_position, memory_size
-        )
+        call_data = memory_read_bytes(evm.memory, memory_start_position, memory_size)
 
         increment_nonce(evm.env.state, evm.message.current_target)
 
@@ -113,9 +101,7 @@ def create(evm: Evm) -> None:
             push(evm.stack, U256(0))
         else:
             incorporate_child_on_success(evm, child_evm)
-            push(
-                evm.stack, U256.from_be_bytes(child_evm.message.current_target)
-            )
+            push(evm.stack, U256.from_be_bytes(child_evm.message.current_target))
 
     # PROGRAM COUNTER
     evm.pc += 1
@@ -143,9 +129,7 @@ def return_(evm: Evm) -> None:
 
     # OPERATION
     evm.memory += b"\x00" * extend_memory.expand_by
-    evm.output = memory_read_bytes(
-        evm.memory, memory_start_position, memory_size
-    )
+    evm.output = memory_read_bytes(evm.memory, memory_start_position, memory_size)
 
     evm.running = False
 
@@ -235,16 +219,12 @@ def call(evm: Evm) -> None:
             (memory_output_start_position, memory_output_size),
         ],
     )
-    message_call_gas = calculate_message_call_gas(
-        evm.env.state, gas, to, value
-    )
+    message_call_gas = calculate_message_call_gas(evm.env.state, gas, to, value)
     charge_gas(evm, message_call_gas.cost + extend_memory.cost)
 
     # OPERATION
     evm.memory += b"\x00" * extend_memory.expand_by
-    sender_balance = get_account(
-        evm.env.state, evm.message.current_target
-    ).balance
+    sender_balance = get_account(evm.env.state, evm.message.current_target).balance
     if sender_balance < value:
         push(evm.stack, U256(0))
         evm.gas_left += message_call_gas.stipend
@@ -295,16 +275,12 @@ def callcode(evm: Evm) -> None:
             (memory_output_start_position, memory_output_size),
         ],
     )
-    message_call_gas = calculate_message_call_gas(
-        evm.env.state, gas, to, value
-    )
+    message_call_gas = calculate_message_call_gas(evm.env.state, gas, to, value)
     charge_gas(evm, message_call_gas.cost + extend_memory.cost)
 
     # OPERATION
     evm.memory += b"\x00" * extend_memory.expand_by
-    sender_balance = get_account(
-        evm.env.state, evm.message.current_target
-    ).balance
+    sender_balance = get_account(evm.env.state, evm.message.current_target).balance
     if sender_balance < value:
         push(evm.stack, U256(0))
         evm.gas_left += message_call_gas.stipend

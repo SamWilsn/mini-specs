@@ -1,23 +1,11 @@
 """
-Ensure (Assertion) Utilities
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Functions that simplify checking assertions and raising exceptions.
 """
 
 from typing import Type, Union
 
 
-def ensure(
-    value: bool, exception: Union[Type[BaseException], BaseException]
-) -> None:
+def ensure(value: bool, exception: Union[Type[BaseException], BaseException]) -> None:
     """
     Does nothing if `value` is truthy, otherwise raises the exception returned
     by `exception_class`.

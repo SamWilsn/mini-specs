@@ -1,14 +1,4 @@
 """
-Ethereum Virtual Machine (EVM) RIPEMD160 PRECOMPILED CONTRACT
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Implementation of the `RIPEMD160` precompiled contract.
 """
 import hashlib

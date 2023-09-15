@@ -1,14 +1,4 @@
 """
-Fork Criteria
-^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Classes for specifying criteria for Mainnet forks.
 """
 

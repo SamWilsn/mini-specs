@@ -1,14 +1,4 @@
 """
-Cryptographic Hash Functions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Cryptographic hashing functions.
 """
 

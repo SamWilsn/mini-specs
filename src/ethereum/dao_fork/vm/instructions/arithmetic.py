@@ -1,14 +1,4 @@
 """
-Ethereum Virtual Machine (EVM) Arithmetic Instructions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Implementations of the EVM Arithmetic instructions.
 """
 
@@ -313,9 +303,7 @@ def exp(evm: Evm) -> None:
     # function is inaccurate leading to wrong results.
     exponent_bits = exponent.bit_length()
     exponent_bytes = (exponent_bits + 7) // 8
-    charge_gas(
-        evm, GAS_EXPONENTIATION + GAS_EXPONENTIATION_PER_BYTE * exponent_bytes
-    )
+    charge_gas(evm, GAS_EXPONENTIATION + GAS_EXPONENTIATION_PER_BYTE * exponent_bytes)
 
     # OPERATION
     result = U256(pow(base, exponent, U256_CEIL_VALUE))

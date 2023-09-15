@@ -1,16 +1,4 @@
 """
-.. _rlp:
-
-Recursive Length Prefix (RLP) Encoding
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Defines the serialization and deserialization format used throughout Ethereum.
 """
 
@@ -92,11 +80,7 @@ def encode_bytes(raw_bytes: Bytes) -> Bytes:
     else:
         # length of raw data represented as big endian bytes
         len_raw_data_as_be = len_raw_data.to_be_bytes()
-        return (
-            bytes([0xB7 + len(len_raw_data_as_be)])
-            + len_raw_data_as_be
-            + raw_bytes
-        )
+        return bytes([0xB7 + len(len_raw_data_as_be)]) + len_raw_data_as_be + raw_bytes
 
 
 def encode_sequence(raw_sequence: Sequence[RLP]) -> Bytes:
@@ -295,9 +279,7 @@ def _decode_to(cls: Type[T], raw_rlp: RLP) -> T:
             args.append(_decode_to(field.type, rlp_item))
         return cast(T, cls(*args))
     else:
-        raise RLPDecodingError(
-            "RLP Decoding to type {} is not supported".format(cls)
-        )
+        raise RLPDecodingError("RLP Decoding to type {} is not supported".format(cls))
 
 
 def decode_to_bytes(encoded_bytes: Bytes) -> Bytes:
@@ -321,23 +303,17 @@ def decode_to_bytes(encoded_bytes: Bytes) -> Bytes:
         len_raw_data = encoded_bytes[0] - 0x80
         ensure(len_raw_data < len(encoded_bytes), RLPDecodingError)
         raw_data = encoded_bytes[1 : 1 + len_raw_data]
-        ensure(
-            not (len_raw_data == 1 and raw_data[0] < 0x80), RLPDecodingError
-        )
+        ensure(not (len_raw_data == 1 and raw_data[0] < 0x80), RLPDecodingError)
         return raw_data
     else:
         # This is the index in the encoded data at which decoded data
         # starts from.
         decoded_data_start_idx = 1 + encoded_bytes[0] - 0xB7
-        ensure(
-            decoded_data_start_idx - 1 < len(encoded_bytes), RLPDecodingError
-        )
+        ensure(decoded_data_start_idx - 1 < len(encoded_bytes), RLPDecodingError)
         # Expectation is that the big endian bytes shouldn't start with 0
         # while trying to decode using RLP, in which case is an error.
         ensure(encoded_bytes[1] != 0, RLPDecodingError)
-        len_decoded_data = Uint.from_be_bytes(
-            encoded_bytes[1:decoded_data_start_idx]
-        )
+        len_decoded_data = Uint.from_be_bytes(encoded_bytes[1:decoded_data_start_idx])
         ensure(len_decoded_data >= 0x38, RLPDecodingError)
         decoded_data_end_idx = decoded_data_start_idx + len_decoded_data
         ensure(decoded_data_end_idx - 1 < len(encoded_bytes), RLPDecodingError)
@@ -376,9 +352,7 @@ def decode_to_sequence(encoded_sequence: Bytes) -> List[RLP]:
             encoded_sequence[1:joined_encodings_start_idx]
         )
         ensure(len_joined_encodings >= 0x38, RLPDecodingError)
-        joined_encodings_end_idx = (
-            joined_encodings_start_idx + len_joined_encodings
-        )
+        joined_encodings_end_idx = joined_encodings_start_idx + len_joined_encodings
         ensure(
             joined_encodings_end_idx - 1 < len(encoded_sequence),
             RLPDecodingError,
@@ -409,9 +383,7 @@ def decode_joined_encodings(joined_encodings: Bytes) -> List[RLP]:
 
     item_start_idx = 0
     while item_start_idx < len(joined_encodings):
-        encoded_item_length = decode_item_length(
-            joined_encodings[item_start_idx:]
-        )
+        encoded_item_length = decode_item_length(joined_encodings[item_start_idx:])
         ensure(
             item_start_idx + encoded_item_length - 1 < len(joined_encodings),
             RLPDecodingError,
@@ -473,9 +445,7 @@ def decode_item_length(encoded_data: Bytes) -> int:
         # Expectation is that the big endian bytes shouldn't start with 0
         # while trying to decode using RLP, in which case is an error.
         ensure(encoded_data[1] != 0, RLPDecodingError)
-        decoded_data_length = Uint.from_be_bytes(
-            encoded_data[1 : 1 + length_length]
-        )
+        decoded_data_length = Uint.from_be_bytes(encoded_data[1 : 1 + length_length])
     # This occurs only when the raw_data is a sequence of objects with
     # length(concatenation of encoding of each object) < 56
     elif first_rlp_byte <= 0xF7:
@@ -488,9 +458,7 @@ def decode_item_length(encoded_data: Bytes) -> int:
         # Expectation is that the big endian bytes shouldn't start with 0
         # while trying to decode using RLP, in which case is an error.
         ensure(encoded_data[1] != 0, RLPDecodingError)
-        decoded_data_length = Uint.from_be_bytes(
-            encoded_data[1 : 1 + length_length]
-        )
+        decoded_data_length = Uint.from_be_bytes(encoded_data[1 : 1 + length_length])
 
     return 1 + length_length + decoded_data_length
 

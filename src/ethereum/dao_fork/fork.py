@@ -1,16 +1,4 @@
 """
-.. _dao-fork:
-
-Ethereum Specification
-^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Entry point for the Ethereum specification.
 """
 
@@ -445,9 +433,7 @@ def apply_body(
     transactions_trie: Trie[Bytes, Optional[Transaction]] = Trie(
         secured=False, default=None
     )
-    receipts_trie: Trie[Bytes, Optional[Receipt]] = Trie(
-        secured=False, default=None
-    )
+    receipts_trie: Trie[Bytes, Optional[Receipt]] = Trie(secured=False, default=None)
     block_logs: Tuple[Log, ...] = ()
 
     for i, tx in enumerate(transactions):
@@ -572,9 +558,7 @@ def validate_ommers(
         ommer_age = block_header.number - ommer.number
         ensure(1 <= ommer_age <= MAX_OMMER_DEPTH, InvalidBlock)
 
-        ensure(
-            ommer.parent_hash in recent_canonical_block_hashes, InvalidBlock
-        )
+        ensure(ommer.parent_hash in recent_canonical_block_hashes, InvalidBlock)
         ensure(ommer.parent_hash != block_header.parent_hash, InvalidBlock)
 
 
@@ -689,9 +673,7 @@ def process_transaction(
     coinbase_balance_after_mining_fee = (
         get_account(env.state, env.coinbase).balance + transaction_fee
     )
-    set_account_balance(
-        env.state, env.coinbase, coinbase_balance_after_mining_fee
-    )
+    set_account_balance(env.state, env.coinbase, coinbase_balance_after_mining_fee)
 
     for address in output.accounts_to_delete:
         destroy_account(env.state, address)

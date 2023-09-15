@@ -1,14 +1,4 @@
 """
-Ethereum Virtual Machine (EVM) Interpreter
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 A straightforward interpreter that executes EVM code.
 """
 from dataclasses import dataclass
@@ -60,9 +50,7 @@ class MessageCallOutput:
     has_erred: bool
 
 
-def process_message_call(
-    message: Message, env: Environment
-) -> MessageCallOutput:
+def process_message_call(message: Message, env: Environment) -> MessageCallOutput:
     """
     If `message.current` is empty then it creates a smart contract
     else it executes a call from the `message.caller` to the `message.target`.
@@ -81,9 +69,7 @@ def process_message_call(
         Output of the message call
     """
     if message.target == Bytes0(b""):
-        is_collision = account_has_code_or_nonce(
-            env.state, message.current_target
-        )
+        is_collision = account_has_code_or_nonce(env.state, message.current_target)
         if is_collision:
             return MessageCallOutput(Uint(0), U256(0), tuple(), set(), True)
         else:
@@ -93,8 +79,7 @@ def process_message_call(
 
     accounts_to_delete = collect_accounts_to_delete(evm)
     refund_counter = (
-        calculate_gas_refund(evm)
-        + len(accounts_to_delete) * REFUND_SELF_DESTRUCT
+        calculate_gas_refund(evm) + len(accounts_to_delete) * REFUND_SELF_DESTRUCT
     )
 
     return MessageCallOutput(
@@ -168,9 +153,7 @@ def process_message(message: Message, env: Environment) -> Evm:
     touch_account(env.state, message.current_target)
 
     if message.should_transfer_value and message.value != 0:
-        move_ether(
-            env.state, message.caller, message.current_target, message.value
-        )
+        move_ether(env.state, message.caller, message.current_target, message.value)
 
     evm = execute_code(message, env)
     if evm.has_erred:

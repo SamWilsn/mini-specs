@@ -1,14 +1,4 @@
 """
-Ethereum Virtual Machine (EVM) Gas
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 EVM gas constants and calculators.
 """
 from dataclasses import dataclass

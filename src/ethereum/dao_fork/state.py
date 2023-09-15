@@ -1,14 +1,4 @@
 """
-State
-^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 The state contains all information that is preserved between transactions.
 
 It consists of a main account trie and storage tries for each contract.
@@ -35,13 +25,9 @@ class State:
     _main_trie: Trie[Address, Optional[Account]] = field(
         default_factory=lambda: Trie(secured=True, default=None)
     )
-    _storage_tries: Dict[Address, Trie[Bytes, U256]] = field(
-        default_factory=dict
-    )
+    _storage_tries: Dict[Address, Trie[Bytes, U256]] = field(default_factory=dict)
     _snapshots: List[
-        Tuple[
-            Trie[Address, Optional[Account]], Dict[Address, Trie[Bytes, U256]]
-        ]
+        Tuple[Trie[Address, Optional[Account]], Dict[Address, Trie[Bytes, U256]]]
     ] = field(default_factory=list)
 
 
@@ -148,9 +134,7 @@ def get_account_optional(state: State, address: Address) -> Optional[Account]:
     return account
 
 
-def set_account(
-    state: State, address: Address, account: Optional[Account]
-) -> None:
+def set_account(state: State, address: Address, account: Optional[Account]) -> None:
     """
     Set the `Account` object at an address. Setting to `None` deletes
     the account (but not its storage, see `destroy_account()`).
@@ -230,9 +214,7 @@ def get_storage(state: State, address: Address, key: Bytes) -> U256:
     return value
 
 
-def set_storage(
-    state: State, address: Address, key: Bytes, value: U256
-) -> None:
+def set_storage(state: State, address: Address, key: Bytes, value: U256) -> None:
     """
     Set a value at a storage key on an account. Setting to `U256(0)` deletes
     the key.
@@ -344,9 +326,7 @@ def account_has_code_or_nonce(state: State, address: Address) -> bool:
     return account.nonce != Uint(0) or account.code != b""
 
 
-def modify_state(
-    state: State, address: Address, f: Callable[[Account], None]
-) -> None:
+def modify_state(state: State, address: Address, f: Callable[[Account], None]) -> None:
     """
     Modify an `Account` in the `State`.
     """

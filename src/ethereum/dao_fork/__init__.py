@@ -1,7 +1,4 @@
 """
-Ethereum Dao Hardfork
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 The third Ethereum hardfork.
 """
 

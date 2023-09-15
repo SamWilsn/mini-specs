@@ -1,14 +1,4 @@
 """
-Utility Functions For Byte Strings
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. contents:: Table of Contents
-    :backlinks: none
-    :local:
-
-Introduction
-------------
-
 Byte specific utility functions used in this specification.
 """
 from ethereum.base_types import Bytes
